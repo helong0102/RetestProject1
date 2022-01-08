@@ -34,6 +34,11 @@
             <artifactId>interface</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.fmjava</groupId>
+            <artifactId>dao</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
