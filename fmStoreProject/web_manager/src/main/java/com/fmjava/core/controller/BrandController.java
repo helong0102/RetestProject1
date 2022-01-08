@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created with IntelliJ IDEA.
  *
  * @Author: HeLong
- * @Date: 2022/01/07/21:28
+ * @Date: 2022/01/08/9:46
  * @Description:
  */
 @RestController
@@ -19,7 +19,7 @@ public class BrandController {
     private BrandService brandService;
 
     @RequestMapping("/getname")
-    public String getName(){
+    public String getName() {
         return brandService.getName();
     }
 }
