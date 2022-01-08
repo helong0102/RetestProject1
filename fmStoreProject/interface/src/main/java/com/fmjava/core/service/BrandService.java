@@ -1,5 +1,9 @@
 package com.fmjava.core.service;
 
+import com.fmjava.core.pojo.good.Brand;
+
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -8,5 +12,5 @@ package com.fmjava.core.service;
  * @Description:
  */
 public interface BrandService {
-    public String getName();
+    public List<Brand> getName();
 }

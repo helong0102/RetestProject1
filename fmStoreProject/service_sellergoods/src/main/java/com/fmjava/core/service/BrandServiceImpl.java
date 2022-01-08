@@ -1,6 +1,11 @@
 package com.fmjava.core.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.fmjava.core.dao.good.BrandDao;
+import com.fmjava.core.pojo.good.Brand;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,8 +16,15 @@ import com.alibaba.dubbo.config.annotation.Service;
  */
 @Service
 public class BrandServiceImpl implements BrandService {
+
+    @Autowired
+    private BrandDao brandDao;
+
     @Override
-    public String getName() {
-        return "HeLong";
+    public List<Brand> getName() {
+
+        List<Brand> brands = brandDao.selectByExample(null);
+
+        return brands;
     }
 }

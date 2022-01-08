@@ -1,9 +1,12 @@
 package com.fmjava.core.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.fmjava.core.pojo.good.Brand;
 import com.fmjava.core.service.BrandService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +22,7 @@ public class BrandController {
     private BrandService brandService;
 
     @RequestMapping("/getname")
-    public String getName() {
+    public List<Brand> getName() {
         return brandService.getName();
     }
 }
