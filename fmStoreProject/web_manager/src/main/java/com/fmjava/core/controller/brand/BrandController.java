@@ -16,6 +16,7 @@ import java.util.List;
  * @Description:
  */
 @RestController
+@RequestMapping("/brand")
 public class BrandController {
 
     @Reference
