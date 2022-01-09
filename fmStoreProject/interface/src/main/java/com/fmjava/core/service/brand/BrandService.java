@@ -39,4 +39,12 @@ public interface BrandService {
      * @return 查询的品牌实体
      */
     public Brand findBrandWithId(Long id);
+
+    /**
+     * 修改品牌信息
+     * @author HeLong
+     * @param brand：更新后的品牌实体
+     * @return void
+     */
+    public void update(Brand brand);
 }

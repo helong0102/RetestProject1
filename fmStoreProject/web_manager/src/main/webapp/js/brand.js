@@ -37,15 +37,30 @@ new Vue({
                     console.log(reason)
             })
         },
-        // 添加品牌 保存实体
+        // 添加/ 更新品牌
         brandSave:function () {
             var _this = this;
-            axios.post("/brand/add.do",_this.brand)
-                .then(function (value) {
-                console.log(value.data);
-                // 刷新页面
-                _this.pageHandler(1);
-            })
+
+             // 区分是保存还是修改
+            if (_this.brand.id != null){
+                // 更新品牌
+                axios.post("/brand/update.do",_this.brand)
+                    .then(function (value) {
+                        // 刷新页面
+                        _this.pageHandler(_this.page);
+                        _this.brand = {};
+                    })
+            }else{
+                // 添加品牌
+                axios.post("/brand/add.do",_this.brand)
+                    .then(function (value) {
+                        console.log(value.data);
+                        // 刷新页面
+                        _this.pageHandler(1);
+                        _this.brand = {};
+                    })
+            }
+
         },
         // 根据品牌Id进行查询
         findById:function (id) {

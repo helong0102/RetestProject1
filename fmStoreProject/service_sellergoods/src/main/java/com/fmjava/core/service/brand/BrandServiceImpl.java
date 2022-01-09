@@ -68,4 +68,15 @@ public class BrandServiceImpl implements BrandService {
         System.out.println(id+"dao");
         return brandDao.selectByPrimaryKey(id);
     }
+
+    /**
+     * 修改品牌信息
+     * @author HeLong
+     * @param brand：更新后的品牌实体
+     * @return void
+     */
+    @Override
+    public void update(Brand brand) {
+        brandDao.updateByPrimaryKeySelective(brand);
+    }
 }

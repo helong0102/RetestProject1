@@ -70,10 +70,26 @@ public class BrandController {
      */
     @RequestMapping("/findOne")
     public Brand findOne(Long id){
-        System.out.println(id);
         Brand brand = brandService.findBrandWithId(id);
         System.out.println(brand);
         return brand;
+    }
+
+    /**
+     * 修改品牌信息
+     * @author HeLong
+     * @param brand：更新后的品牌实体
+     * @return 更新结果信息
+     */
+    @RequestMapping("/update")
+    public Result update(@RequestBody Brand brand){
+        try {
+            brandService.update(brand);
+            return new Result(true,"修改成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(true,"修改失败！");
+        }
     }
 
 }
