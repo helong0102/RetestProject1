@@ -1,5 +1,6 @@
 package com.fmjava.core.service.brand;
 
+import com.fmjava.core.pojo.entity.PageResult;
 import com.fmjava.core.pojo.good.Brand;
 
 import java.util.List;
@@ -12,5 +13,14 @@ import java.util.List;
  * @Description:
  */
 public interface BrandService {
+
     public List<Brand> findAll();
+
+    /**
+     *分页查询
+     * @author HeLong
+     * @param page：当前页码；pageSize:一次查询多少条记录
+     * @return 返回查询结果实体
+     */
+    PageResult findPage(Integer page, Integer pageSize);
 }
