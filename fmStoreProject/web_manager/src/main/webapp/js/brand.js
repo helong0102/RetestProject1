@@ -46,6 +46,17 @@ new Vue({
                 // 刷新页面
                 _this.pageHandler(1);
             })
+        },
+        // 根据品牌Id进行查询
+        findById:function (id) {
+            _this = this;
+            axios.get("/brand/findOne.do",{params:{id:id}})
+                .then(function (response) {
+                    _this.brand = response.data;
+                    console.log(response.data)
+                }).catch(function (reason) {
+                console.log(reason)
+            })
         }
 
     },
@@ -54,5 +65,6 @@ new Vue({
         //this.findAllBrand();
         this.pageHandler(1);
     }
+
 
 });

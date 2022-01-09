@@ -31,4 +31,12 @@ public interface BrandService {
      * @return void
      */
     public void add(Brand brand);
+
+    /**
+     *根据ID查询品牌
+     * @author HeLong
+     * @param id：品牌Id
+     * @return 查询的品牌实体
+     */
+    public Brand findBrandWithId(Long id);
 }

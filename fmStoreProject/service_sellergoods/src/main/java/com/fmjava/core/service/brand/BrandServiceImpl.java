@@ -56,4 +56,16 @@ public class BrandServiceImpl implements BrandService {
     public void add(Brand brand) {
         brandDao.insertSelective(brand);
     }
+
+    /**
+     *根据ID查询品牌
+     * @author HeLong
+     * @param id：品牌Id
+     * @return 查询的品牌实体
+     */
+    @Override
+    public Brand findBrandWithId(Long id) {
+        System.out.println(id+"dao");
+        return brandDao.selectByPrimaryKey(id);
+    }
 }
