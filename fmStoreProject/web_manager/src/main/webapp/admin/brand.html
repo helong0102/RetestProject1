@@ -79,16 +79,16 @@
 					<table class="table table-bordered table-striped"  width="800px">
 						<tr>
 							<td>品牌名称</td>
-							<td><input  class="form-control" placeholder="品牌名称" >  </td>
+							<td><input  class="form-control" v-model="brand.name" placeholder="品牌名称" >  </td>
 						</tr>
 						<tr>
 							<td>首字母</td>
-							<td><input  class="form-control" placeholder="首字母">  </td>
+							<td><input  class="form-control" v-model="brand.firstChar" placeholder="首字母">  </td>
 						</tr>
 					</table>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+					<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" @click="brandSave()">保存</button>
 					<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 				</div>
 			</div>

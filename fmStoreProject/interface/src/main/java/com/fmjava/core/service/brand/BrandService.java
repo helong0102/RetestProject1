@@ -23,4 +23,12 @@ public interface BrandService {
      * @return 返回查询结果实体
      */
     PageResult findPage(Integer page, Integer pageSize);
+
+    /**
+     *添加品牌
+     * @author HeLong
+     * @param brand：需要添加的品牌数据
+     * @return void
+     */
+    public void add(Brand brand);
 }

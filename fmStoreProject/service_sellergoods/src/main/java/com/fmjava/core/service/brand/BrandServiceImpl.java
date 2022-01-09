@@ -45,4 +45,15 @@ public class BrandServiceImpl implements BrandService {
         PageResult pageResult = new PageResult(brands.getTotal(), brands.getResult());
         return pageResult;
     }
+
+    /**
+     *添加品牌
+     * @author HeLong
+     * @param brand：需要添加的品牌数据
+     * @return void
+     */
+    @Override
+    public void add(Brand brand) {
+        brandDao.insertSelective(brand);
+    }
 }

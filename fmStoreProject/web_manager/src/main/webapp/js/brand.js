@@ -2,7 +2,7 @@ new Vue({
     el:"#app",
     data:{
         brandList:[],
-        brand:{},
+        brand:{},//定义品牌实体
         page:1, // 当前页码
         pageSize:5, // 一页有多少条数据
         total:150, // 总页码数
@@ -35,6 +35,16 @@ new Vue({
                     console.log(response)
                 }).catch(function (reason) {
                     console.log(reason)
+            })
+        },
+        // 添加品牌 保存实体
+        brandSave:function () {
+            var _this = this;
+            axios.post("/brand/add.do",_this.brand)
+                .then(function (value) {
+                console.log(value.data);
+                // 刷新页面
+                _this.pageHandler(1);
             })
         }
 
