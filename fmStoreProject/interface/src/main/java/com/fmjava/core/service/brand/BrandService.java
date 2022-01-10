@@ -19,10 +19,10 @@ public interface BrandService {
     /**
      *分页查询
      * @author HeLong
-     * @param page：当前页码；pageSize:一次查询多少条记录
+     * @param page：当前页码；pageSize:一次查询多少条记录 searchBrand:查询条件
      * @return 返回查询结果实体
      */
-    PageResult findPage(Integer page, Integer pageSize);
+    PageResult findPage(Integer page, Integer pageSize, Brand searchBrand);
 
     /**
      *添加品牌

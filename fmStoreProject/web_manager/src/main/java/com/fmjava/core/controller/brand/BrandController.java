@@ -35,12 +35,13 @@ public class BrandController {
     /**
      *品牌分页
      * @author HeLong
-     * @param page：当前页 pageSize：一次查询多少条记录
+     * @param page：当前页 pageSize：一次查询多少条记录 searchBrand:查询条件
      * @return 返回查询结果实体
      */
     @RequestMapping("/findPage")
-    public PageResult findPage(Integer page, Integer pageSize){
-        PageResult pageResult =  brandService.findPage(page,pageSize);
+    public PageResult findPage(Integer page, Integer pageSize,@RequestBody Brand searchBrand){
+        System.out.println(searchBrand);
+        PageResult pageResult =  brandService.findPage(page,pageSize,searchBrand);
         return pageResult;
     }
 

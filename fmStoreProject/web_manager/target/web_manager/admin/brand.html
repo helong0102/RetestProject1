@@ -27,8 +27,16 @@
 				<div class="form-group form-inline">
 					<div class="btn-group">
 						<button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-						<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+						<button type="button" class="btn btn-default" title="删除" @click="brandDelete()"><i class="fa fa-trash-o"></i> 删除</button>
 						<button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+					</div>
+					<!--搜索窗口-->
+					<div class="box-tools pull-right">
+						<div class="has-feedback" style="margin-left: 750px; font-size: 16px">
+							品牌名称: <input type="text" class="form-control" v-model="searchBrand.name" >
+							品牌首字母: <input type="text" class="form-control" v-model="searchBrand.firstChar" >
+							<input class="btn btn-default"  @click="pageHandler(1)" type="button" value="查询">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -50,7 +58,7 @@
 				</thead>
 				<tbody>
 				<tr v-for="brand in brandList">
-					<td><input  type="checkbox" ></td>
+					<td><input  type="checkbox" @click="deleteSelection($event,brand.id)"></td>
 					<td>{{brand.id}}</td>
 					<td>{{brand.name}}</td>
 					<td>{{brand.firstChar}}</td>
@@ -105,5 +113,6 @@
 <script src="../plugins/vue/vuejs-2.5.16.js"></script>
 <script src="../plugins/vue/axios-0.18.0.js"></script>
 <script type="text/javascript" src="../plugins/pageination/zpageNav.js"></script>
+<script src="../plugins/vue/qs.js"></script>
 <script src="../js/brand.js"></script>
 </html>

@@ -36,14 +36,24 @@ public class BrandServiceImpl implements BrandService {
     /**
      *分页查询
      * @author HeLong
-     * @param page：总记录数；pageSize:当前页结果
+     * @param page：总记录数；pageSize:当前页结果 searchBrand:查询条件
      * @return 返回查询结果实体
      */
     @Override
-    public PageResult findPage(Integer page, Integer pageSize) {
+    public PageResult findPage(Integer page, Integer pageSize, Brand searchBrand) {
         // 利用分页助手实现分页，第一个参数：当前页面，每页展示数据条数
         PageHelper.startPage(page,pageSize);
-        Page<Brand> brands = (Page<Brand>)brandDao.selectByExample(null);
+        BrandQuery brandQuery = new BrandQuery();
+        BrandQuery.Criteria criteria = brandQuery.createCriteria();
+        if (searchBrand!=null){
+            if (searchBrand.getName() != null && !"".equals(searchBrand.getName())){
+                criteria.andNameLike("%"+searchBrand.getName()+"%");
+            }
+            if (searchBrand.getFirstChar() != null && !"".equals(searchBrand.getFirstChar()+"%")){
+                criteria.andFirstCharLike("%"+searchBrand.getFirstChar()+"%");
+            }
+        }
+        Page<Brand> brands = (Page<Brand>)brandDao.selectByExample(brandQuery);
         PageResult pageResult = new PageResult(brands.getTotal(), brands.getResult());
         return pageResult;
     }
