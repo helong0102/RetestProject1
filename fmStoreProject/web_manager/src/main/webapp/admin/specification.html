@@ -84,12 +84,12 @@
 					<table class="table table-bordered table-striped"  width="800px">
 						<tr>
 							<td>规格名称</td>
-							<td><input  class="form-control" placeholder="规格名称" ></td>
+							<td><input  class="form-control" v-model="secEntity.specification.specName" placeholder="规格名称" ></td>
 						</tr>
 					</table>
 					<!-- 规格选项 -->
 					<div class="btn-group">
-						<button type="button" class="btn btn-default" title="新建" >
+						<button type="button" class="btn btn-default" @click="addRow()" title="新建" >
 							<i class="fa fa-file-o"></i>
 							新增规格选项
 						</button>
@@ -103,38 +103,26 @@
 						<tr/>
 						</thead>
 						<tbody>
-						<tr>
-							<td><input  class="form-control" placeholder="规格选项"></td>
-							<td><input  class="form-control" placeholder="排序"></td>
-							<td><button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button></td>
-						</tr>
-						<tr>
+						<tr v-for="pojo in secEntity.specOptionList">
 							<td>
-								<input  class="form-control" placeholder="规格选项">
+								<input v-model="pojo.optionName" class="form-control" placeholder="规格选项">
 							</td>
 							<td>
-								<input  class="form-control" placeholder="排序">
+								<input v-model="pojo.orders" class="form-control" placeholder="排序">
 							</td>
 							<td>
-								<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<input  class="form-control" placeholder="规格选项">
-							</td>
-							<td>
-								<input  class="form-control" placeholder="排序">
-							</td>
-							<td>
-								<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+								<button type="button"
+										class="btn btn-default"
+										title="删除"
+										@click="deleteTableRow($index)">
+									<i class="fa fa-trash-o"></i> 删除</button>
 							</td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+					<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" @click="save()">保存</button>
 					<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 				</div>
 			</div>

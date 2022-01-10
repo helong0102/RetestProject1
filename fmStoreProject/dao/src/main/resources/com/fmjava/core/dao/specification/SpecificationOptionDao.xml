@@ -109,7 +109,9 @@
     values (#{id,jdbcType=BIGINT}, #{optionName,jdbcType=VARCHAR}, #{specId,jdbcType=BIGINT}, 
       #{orders,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.fmjava.core.pojo.specification.SpecificationOption" >
+  <insert id="insertSelective" parameterType="com.fmjava.core.pojo.specification.SpecificationOption"
+    useGeneratedKeys="true"
+    keyProperty="id">
     insert into tb_specification_option
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

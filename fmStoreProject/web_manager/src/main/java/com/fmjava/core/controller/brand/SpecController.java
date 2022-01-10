@@ -2,6 +2,8 @@ package com.fmjava.core.controller.brand;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.fmjava.core.pojo.entity.PageResult;
+import com.fmjava.core.pojo.entity.Result;
+import com.fmjava.core.pojo.entity.SpecEntity;
 import com.fmjava.core.pojo.specification.Specification;
 import com.fmjava.core.service.brand.SpecificationService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,12 +32,28 @@ public class SpecController {
      */
     @RequestMapping("/search")
     public PageResult search( Integer page, Integer rows, @RequestBody Specification spec){
-        System.out.println(page);
-        System.out.println(rows);
-        System.out.println(spec);
         PageResult result = specificationService.findPage(spec,page,rows);
         return result;
     }
+
+    /**
+     * 增加规格实体
+     * @author HeLong
+     * @param specEntity：规格封装实体
+     * @return Result：保存结果状态信息
+     */
+
+    @RequestMapping("/add")
+    public Result add(@RequestBody SpecEntity specEntity){
+        try {
+            specificationService.add(specEntity);
+            return new Result(true,"保存成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false,"保存失败！");
+        }
+    }
+
 
 
 }

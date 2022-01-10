@@ -2,8 +2,12 @@ package com.fmjava.core.service.brand;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.fmjava.core.dao.specification.SpecificationDao;
+import com.fmjava.core.dao.specification.SpecificationOptionDao;
 import com.fmjava.core.pojo.entity.PageResult;
+import com.fmjava.core.pojo.entity.Result;
+import com.fmjava.core.pojo.entity.SpecEntity;
 import com.fmjava.core.pojo.specification.Specification;
+import com.fmjava.core.pojo.specification.SpecificationOption;
 import com.fmjava.core.pojo.specification.SpecificationQuery;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -23,6 +27,9 @@ public class SpecificationServiceImpl implements SpecificationService {
 
     @Autowired
     private SpecificationDao specificationDao;
+    @Autowired
+    private SpecificationOptionDao specificationOptionDao;
+
 
     /**
      * 规格分页查询
@@ -42,5 +49,25 @@ public class SpecificationServiceImpl implements SpecificationService {
         }
         Page<Specification> specList = (Page<Specification>)specificationDao.selectByExample(query);
         return new PageResult(specList.getTotal(),specList.getResult());
+    }
+
+    /**
+     * 增加规格实体
+     * @author HeLong
+     * @param specEntity：规格封装实体
+     * @return void
+     */
+    @Override
+    public void add(SpecEntity specEntity) {
+        // 1.添加规格对象
+        specificationDao.insertSelective(specEntity.getSpecification());
+        // 2.添加规格对象
+        if (specEntity.getSpecification() != null){
+            for (SpecificationOption option : specEntity.getSpecOptionList()) {
+                // 设置规格选项外键
+                option.setSpecId(specEntity.getSpecification().getId());
+                specificationOptionDao.insertSelective(option);
+            }
+        }
     }
 }

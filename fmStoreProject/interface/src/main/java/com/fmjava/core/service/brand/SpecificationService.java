@@ -1,6 +1,7 @@
 package com.fmjava.core.service.brand;
 
 import com.fmjava.core.pojo.entity.PageResult;
+import com.fmjava.core.pojo.entity.SpecEntity;
 import com.fmjava.core.pojo.specification.Specification;
 
 /**
@@ -19,4 +20,12 @@ public interface SpecificationService{
      * @return 查询结果实体封装结果类
      */
     public PageResult findPage(Specification spec, Integer page, Integer rows);
+
+    /**
+     * 增加规格实体
+     * @author HeLong
+     * @param specEntity：规格封装实体
+     * @return void
+     */
+    public void add(SpecEntity specEntity);
 }
