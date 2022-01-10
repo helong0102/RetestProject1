@@ -47,4 +47,12 @@ public interface BrandService {
      * @return void
      */
     public void update(Brand brand);
+
+    /**
+     * 批量删除品牌
+     * @author HeLong
+     * @param ids：待删除品牌id
+     * @return void
+     */
+    public void delete(Long[] ids);
 }

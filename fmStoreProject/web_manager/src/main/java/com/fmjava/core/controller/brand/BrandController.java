@@ -92,4 +92,22 @@ public class BrandController {
         }
     }
 
+    /**
+     * 批量删除品牌
+     * @author HeLong
+     * @param ids：待删除品牌id
+     * @return 删除结果状态信息
+     */
+    @RequestMapping("/delete")
+    public Result delete(Long[] ids){
+        try {
+            System.out.println(ids);
+            brandService.delete(ids);
+            return new Result(true,"删除成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(true,"删除失败！");
+        }
+    }
+
 }

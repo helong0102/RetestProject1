@@ -4,10 +4,12 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.fmjava.core.dao.good.BrandDao;
 import com.fmjava.core.pojo.entity.PageResult;
 import com.fmjava.core.pojo.good.Brand;
+import com.fmjava.core.pojo.good.BrandQuery;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -78,5 +80,24 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public void update(Brand brand) {
         brandDao.updateByPrimaryKeySelective(brand);
+    }
+
+    /**
+     * 批量删除品牌
+     * @author HeLong
+     * @param ids：待删除品牌id
+     * @return void
+     */
+    @Override
+    public void delete(Long[] ids) {
+        if (ids != null){
+            for (Long id : ids) {
+                System.out.println(id);
+            }
+            BrandQuery brandQuery = new BrandQuery();
+            BrandQuery.Criteria criteria = brandQuery.createCriteria();
+            criteria.andIdIn(Arrays.asList(ids));
+            brandDao.deleteByExample(brandQuery);
+        }
     }
 }
