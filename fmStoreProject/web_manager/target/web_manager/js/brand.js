@@ -4,10 +4,11 @@ new Vue({
         brandList:[],
         brand:{},//定义品牌实体
         page:1, // 当前页码
-        pageSize:5, // 一页有多少条数据
+        pageSize:10, // 一页有多少条数据
         total:150, // 总页码数
         maxPage:9, // 最大页码数
-        selectIds:[] // 记录选择了那些记录的id
+        selectIds:[], // 记录选择了那些记录的id
+        searchBrand:{} // 添加品牌实体
     },
     methods:{
         // 直接查询所有结果
@@ -20,15 +21,11 @@ new Vue({
                 console.log(reason)
             })
         },*/
-        pageHandler:function (page) {
-            this.page = page;
-            alert(this.page);
-        },
         // pageHelper分页查询
         pageHandler:function (page) {
             _this = this;
             this.page = page;
-            axios.get('/brand/findPage.do',{params:{page:page,pageSize:_this.pageSize}})
+            axios.post("/brand/findPage.do?page="+page+"&pageSize=10",this.searchBrand)
                 .then(function (response) {
                     // 取服务器响应结果
                     _this.brandList = response.data.rows;
